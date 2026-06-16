@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart School Portal</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { display: flex; min-height: 100vh; background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
+        aside { width: 250px; background-color: #1e293b; padding: 20px; border-right: 1px solid #334155; position: fixed; height: 100vh; }
+        aside h2 { margin-bottom: 30px; font-size: 20px; text-align: center; color: #38bdf8; }
+        aside ul { list-style: none; }
+        aside ul li { margin-bottom: 15px; }
+        aside ul li a { color: #cbd5e1; text-decoration: none; display: block; padding: 10px; border-radius: 5px; }
+        aside ul li a:hover, aside ul li a.active { background-color: #2563eb; color: white; }
+        main { flex: 1; padding: 30px; display: flex; flex-direction: column; gap: 30px; margin-left: 250px; }
+        header { background: #1e293b; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #334155; }
+        header h1 { color: #38bdf8; }
+        header p { color: #94a3b8; }
+        .form-group { margin-bottom: 15px; display: flex; flex-direction: column; gap: 5px; }
+        .form-group label { color: #cbd5e1; font-size: 14px; font-weight: bold; }
+        .form-control { background: #0f172a; border: 1px solid #334155; color: white; padding: 12px; border-radius: 6px; font-size: 15px; outline: none; width: 100%; box-sizing: border-box; }
+        .form-control:focus { border-color: #38bdf8; }
+        select.form-control { appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; padding-right: 40px; }
+        textarea.form-control { resize: vertical; min-height: 100px; }
+        section { background: #1e293b; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #334155; }
+        h3 { margin-bottom: 20px; color: #38bdf8; border-bottom: 2px solid #334155; padding-bottom: 8px; font-size: 22px; }
+        .btn { display: inline-block; background: #2563eb; color: white; padding: 12px 20px; border: none; border-radius: 5px; text-decoration: none; font-weight: bold; text-align: center; cursor: pointer; }
+        .btn:hover { background: #1d4ed8; }
+        table { width: 100%; border-collapse: collapse; }
+        table th, table td { text-align: left; padding: 12px 10px; border-bottom: 1px solid #334155; font-size: 14px; }
+        table th { color: #94a3b8; background: #111827; }
+        .status-badge { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+    </style>
+</head>
+<body>
+
+<!-- 🌟 Sidebar Menu Links (Dashboard Option Completely Removed) -->
+<aside>
+    <h2>EduPortal v1.0</h2>
+    <ul>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'portal_dashboard' %}?tab=attendance">Face ID Attendance
+    <a href="/attendance/history/" style="color: #00b4d8; text-decoration: none; display: block; margin: 12px 0; font-size: 14px; padding-left: 15px;">📊 Attendance Records Log</a></a></li>
+            <li><a href="{% url 'portal_dashboard' %}?tab=exams">Exams & Records</a></li>
+            <li><a href="{% url 'portal_dashboard' %}?tab=billing">Tuition & Billing</a></li>
+            <li><a href="{% url 'portal_logout' %}">Sign Out</a></li>
+        {% else %}
+            <li><a href="{% url 'portal_login' %}">Sign In</a></li>
+            <li><a href="{% url 'portal_register' %}">Register Account</a></li>
+        {% endif %}
+    </ul>
+</aside>
+
+    <!-- Content Target Insertion Workspace Box -->
+    <main>
+        <!-- Individual sub-page data rows inject smoothly directly right here -->
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>

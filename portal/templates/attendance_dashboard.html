@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EduPortal - Attendance History</title>
+    <style>
+        body { background-color: #0b132b; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #00b4d8; border-bottom: 2px solid #1c2541; padding-bottom: 10px; }
+        .table-container { background-color: #1c2541; border-radius: 8px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { color: #00b4d8; border-bottom: 2px solid #3a506b; padding: 12px; font-weight: 600; }
+        td { padding: 12px; border-bottom: 1px solid #3a506b; color: #e0e1dd; }
+        tr:hover { background-color: #3a506b; transition: background 0.2s ease; }
+        .badge { background-color: #2a9d8f; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>EduPortal Attendance Management Control</h1>
+        <p>Logged in as: <strong>{{ request.user.username }}</strong></p>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Log ID</th>
+                        <th>Student Name</th>
+                        <th>Biometric Token</th>
+                        <th>Verification Status</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody><!-- UPDATED: Pulls full name first, falls back to username, and clearly marks system administrators -->
+<td>
+    {% if log.student.user.get_full_name %}
+        {{ log.student.user.get_full_name }}
+    {% elif log.student.user.username == 'admin' %}
+        <strong style="color: #dc3545;">System Administrator</strong>
+    {% else %}
+        {{ log.student.user.username }}
+    {% endif %}
+</td>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

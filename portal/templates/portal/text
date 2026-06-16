@@ -1,0 +1,3 @@
+portal/
+└── templates/
+    └── portal/   <-- Your layout files go inside this folder

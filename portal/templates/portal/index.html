@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LASOP Portal Core | Authentication</title>
+    <style>
+        /* Shared Cream baseline design tokens reset */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #fdfbf7; color: #2d2a26; padding: 20px; }
+        .login-card { background: #f5f2eb; padding: 40px 35px; border-radius: 8px; box-shadow: 0 4px 6px rgba(45,42,38,0.03); border: 1px solid #e2dcce; width: 100%; max-width: 440px; text-align: center; border-top: 4px solid #c29d53; }
+        .brand-header h2 { font-size: 22px; color: #2d2a26; font-weight: 700; letter-spacing: 0.5px; }
+        .brand-header span { font-size: 11px; color: #6b665f; text-transform: uppercase; display: block; margin-top: 4px; margin-bottom: 25px; letter-spacing: 1px; }
+        
+        /* Clean Django error message box styling */
+        .alert-error { 
+            background: #fef2f2; 
+            color: #dc2626; 
+            border: 1px solid #fca5a5; 
+            padding: 12px; 
+            border-radius: 6px; 
+            font-size: 13px; 
+            font-weight: 600; 
+            text-align: left; 
+            margin-bottom: 20px; 
+        }
+
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 14px; color: #6b665f; }
+        .form-control { width: 100%; padding: 12px; border: 1px solid #e2dcce; border-radius: 6px; font-size: 14px; background: #fdfbf7; color: #2d2a26; outline: none; }
+        .form-control:focus { border-color: #c29d53; }
+        .form-control:user-invalid { border-color: #dc2626 !important; background-color: #fef2f2; }
+        .btn { background: #2d2a26; color: #fff; padding: 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; width: 100%; margin-top: 10px; }
+        .btn:hover { background: #c29d53; color: #2d2a26; }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="brand-header">
+            <h2>LASOP Portal Core</h2>
+            <span>Lagos School of Programming</span>
+        </div>
+
+        <!-- FIXED: Native Django code block keeps messages hidden until a validation failure happens -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert-error">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form action="/auth-login/" method="POST">
+            <!-- FIXED: Added mandatory security token right here to destroy the 403 error -->
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="username">Username Handle</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Enter registration name" minlength="3" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Secure Password Key</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Enter security access key" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+            </div>
+
+            <button type="submit" class="btn">Authenticate Profile</button>
+        </form>
+    </div>
+
+</body>
+</html>

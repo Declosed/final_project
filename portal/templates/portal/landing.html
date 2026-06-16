@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to LASOP Portal</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        /* Premium Header Hero Segment */
+        .hero-section { background: linear-gradient(135deg, #1e1b18 0%, #0f172a 100%); padding: 80px 20px; text-align: center; border-bottom: 4px solid #c5a059; }
+        .brand-logo { color: #c5a059; font-size: 38px; font-weight: 800; letter-spacing: 1px; margin-bottom: 8px; }
+        .brand-sub { color: #cbd5e1; font-size: 16px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; }
+        .hero-title { font-size: 28px; max-width: 700px; margin: 0 auto 16px auto; color: #ffffff; line-height: 1.4; }
+        .hero-desc { color: #94a3b8; font-size: 15px; max-width: 550px; margin: 0 auto 35px auto; line-height: 1.6; }
+        
+        /* Core Action Button Elements */
+        .btn-container { display: flex; gap: 16px; justify-content: center; max-width: 400px; margin: 0 auto; }
+        .btn-primary { flex: 1; padding: 16px 24px; background-color: #c5a059; color: #1e1b18; border: none; border-radius: 6px; font-size: 15px; font-weight: 700; text-decoration: none; transition: background-color 0.15s; text-align: center; display: inline-block; }
+        .btn-primary:hover { background-color: #b38f4b; }
+        .btn-secondary { flex: 1; padding: 16px 24px; background-color: transparent; color: #c5a059; border: 2px solid #c5a059; border-radius: 6px; font-size: 15px; font-weight: 700; text-decoration: none; transition: all 0.15s; text-align: center; display: inline-block; }
+        .btn-secondary:hover { background-color: rgba(197, 160, 89, 0.1); color: #ffffff; }
+
+        /* Showcase Features Grid Layout */
+        .info-container { max-width: 1100px; margin: 60px auto 20px auto; padding: 0 20px; width: 100%; }
+        .section-heading { text-align: center; color: #c5a059; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 40px; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 60px; }
+        .feature-card { background-color: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 30px 24px; transition: transform 0.2s; border-bottom: 3px solid transparent; }
+        .feature-card:hover { transform: translateY(-4px); border-bottom-color: #c5a059; }
+        .card-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+        .card-heading { font-size: 18px; color: #ffffff; margin-bottom: 10px; font-weight: 600; }
+        .card-text { color: #94a3b8; font-size: 14px; line-height: 1.5; }
+
+        /* Premium Institutional About Us Section */
+        .about-section { background-color: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 45px 35px; margin: 50px auto; max-width: 1060px; width: 100%; }
+        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 25px; }
+        .about-column { text-align: left; }
+        .about-title { color: #ffffff; font-size: 18px; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .about-text { color: #94a3b8; font-size: 14px; line-height: 1.6; text-align: justify; }
+
+        /* Project Signature Section */
+        .signature-banner { text-align: center; padding: 35px 30px; margin: 40px auto 60px auto; max-width: 850px; background: rgba(197, 160, 89, 0.03); border: 1px dashed rgba(197, 160, 89, 0.3); border-radius: 12px; }
+        .signature-text { color: #cbd5e1; font-size: 16px; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 20px; }
+        .signature-accent { color: #c5a059; font-weight: 700; }
+        
+        /* Centered 3-Column Clean Name Grid */
+        .names-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .developer-name { background: #1e293b; padding: 15px; border-radius: 6px; border: 1px solid #334155; text-align: center; transition: all 0.2s; }
+        .developer-name:hover { border-color: #ffffff; background: #1a2333; }
+        
+        /* GOLD STYLE OVERRIDE: Student names now render in your premium gold hue */
+        .name-title { font-size: 14px; font-weight: 700; color: #c5a059; margin-bottom: 4px; letter-spacing: 0.3px; }
+        .name-track { font-size: 11px; font-weight: 600; color: #cbd5e1; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Media query adjustment for smaller screens or mobile views */
+        @media (max-width: 768px) {
+            .names-grid { grid-template-columns: 1fr; max-width: 320px; }
+            .about-section { padding: 30px 20px; }
+        }
+
+        /* Institutional Premium Footer Row */
+        .footer-bar { margin-top: auto; background-color: #1e1b18; padding: 30px 20px; border-top: 1px solid #2d2a26; text-align: center; color: #64748b; font-size: 13px; }
+        .footer-links { margin-bottom: 12px; }
+        .footer-links a { color: #94a3b8; text-decoration: none; margin: 0 10px; transition: color 0.15s; }
+        .footer-links a:hover { color: #c5a059; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Premium Welcome Top Hero Area -->
+    <header class="hero-section">
+        <div class="brand-logo">LASOP Portal</div>
+        <div class="brand-sub">Lagos School of Programming</div>
+        <h1 class="hero-title">Advance Your Technology Capabilities with Managed Biometric Identity</h1>
+        <p class="hero-desc">Access institutional curriculum logs, map secure profile verification nodes, and configure classroom tracking indices seamlessly.</p>
+        
+                <!-- 🎯 FIXED SIDE-BY-SIDE ONBOARDING INTERFACE -->
+<!-- 🎯 FIXED SIDE-BY-SIDE ONBOARDING INTERFACE -->
+<div class="action-bar-container" style="display: flex; align-items: center; justify-content: center; gap: 15px; width: 100%; margin: 30px auto 0 auto; flex-wrap: wrap;">
+    
+    <!-- 1. Custom Inward Dropdown Menu -->
+    <div class="inward-dropdown" style="position: relative; min-width: 240px;">
+        <select onchange="location = this.value;" class="custom-select-trigger" style="width: 100%; padding: 14px 20px; background-color: #1e3a8a; border: 2px solid #1e3a8a; border-radius: 8px; color: #ffffff; font-size: 15px; font-weight: 700; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; transition: all 0.2s ease; background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://w3.org width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23e2b04c%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpolyline points=%226 9 12 15 18 9%22%3E%3C/polyline%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 16px center; background-size: 16px; padding-right: 45px;">
+            <option value="" disabled selected>🚀 Choose Available Program</option>
+            <option value="/register/?track=fullstack" style="background-color: #ffffff; color: #0f172a; font-weight: 600; padding: 10px;">💻 Fullstack Development</option>
+            <option value="/register/?track=frontend" style="background-color: #ffffff; color: #0f172a; font-weight: 600; padding: 10px;">🎨 Frontend Engineering</option>
+            <option value="/register/?track=data-analytics" style="background-color: #ffffff; color: #0f172a; font-weight: 600; padding: 10px;">📊 Data Analytics</option>
+            <option value="/register/?track=datascience" style="background-color: #ffffff; color: #0f172a; font-weight: 600; padding: 10px;">📊 Data Science & AI</option>
+        </select>
+    </div>
+</div>
+
+<!-- 🎯 CSS HOVER INTERACTIVE ACTIONS -->
+<style>
+    .custom-select-trigger:hover {
+        background-color: #1d4ed8 !important;
+        border-color: #e2b04c !important;
+        box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+    }
+    .btn-signin-secondary:hover {
+        background-color: #f8fafc !important;
+        border-color: #0f172a !important;
+        color: #0f172a !important;
+    }
+</style>
+
+            
+            <!-- 🛠️ VERIFIED LINK: Points perfectly to your active login path -->
+            <a href="/login/" class="btn-secondary">Sign In Access</a>
+        </div>
+
+    </header>
+
+    
+    <!-- 2. Main Layout Context Grid -->
+    <main class="info-container">
+        <h2 class="section-heading">Platform System Pillars</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="card-icon">🛡️</span>
+                <h3 class="card-heading">Face ID Verification</h3>
+                <p class="card-text">Natively snap portrait vector images to secure automated class tracking attendance files instantly.</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="card-icon">💻</span>
+                <h3 class="card-heading">Professional Tracks</h3>
+                <p class="card-text">Enrolled routes covering Fullstack Software Engineering, Data Science Networks, and Architecture matrices.</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="card-icon">💳</span>
+                <h3 class="card-heading">Tuition Management</h3>
+                <p class="card-text">Clear administrative invoices, track financial statements, and execute seamless card transaction logs.</p>
+            </div>
+        </div>
+
+        <!-- Professional institutional "About Us" Structure Layout -->
+        <section class="about-section">
+            <h2 style="color: #c5a059; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-align: center; margin-bottom: 10px;">About Us</h2>
+            <p style="color: #94a3b8; font-size: 14px; text-align: center; max-width: 600px; margin: 0 auto 25px auto;">Empowering tech talents with industry-relevant skills and biometric education tracking infrastructure systems.</p>
+            
+            <div class="about-grid">
+                <div class="about-column">
+                    <h4 class="about-title"><span>🏛️</span> Our Identity</h4>
+                    <p class="about-text">Lagos School of Programming (LASOP) stands out as a premium software training institute dedicated to raising world-class developers, data architects, and analysts across Africa. We bridge technological knowledge deficits through deeply immersive frameworks.</p>
+                </div>
+                
+                <div class="about-column">
+                    <h4 class="about-title"><span>💡</span> Academic Excellence</h4>
+                    <p class="about-text">Our curriculum models balance intense classroom methodology with live engineering execution pipelines. We focus on real-world projects, data validation protocols, and software architectures that make our students employment-ready immediately.</p>
+                </div>
+                
+                <div class="about-column">
+                    <h4 class="about-title"><span>🔒</span> Biometric System Engine</h4>
+                    <p class="about-text">This innovative portal serves as an institutional leap forward, integrating robust facial identity enrollment nodes. Designed for modern classroom tracking matrices, it automates daily activities while ensuring airtight verification integrity.</p>
+                </div>
+            </div>
+        </section>
+
+                <!-- 📊 ALL THREE STUDENT NAMES SECURELY INTEGRATED IN GOLD GRID -->
+        <div class="signature-banner">
+            <p class="signature-text">📊 A project designed by <span class="signature-accent">LASOP 2026 (JAN Set) Data Science and Data Analytics Students</span></p>
+            
+            <div class="names-grid">
+                <!-- Node 1: Hezekiah -->
+                <div class="developer-name">
+                    <div class="name-title">Hezekiah Abiola Omolaja</div>
+                    <div class="name-track">Data Science Student</div>
+                </div>
+                
+                <!-- Node 2: Modupe -->
+                <div class="developer-name">
+                    <div class="name-title">Alao-Sanni Modupe</div>
+                    <div class="name-track">Data Science Student</div>
+                </div>
+                
+                <!-- Node 3: Sodiq -->
+                <div class="developer-name">
+                    <div class="name-title">Olalekan Sodiq Gbenro</div>
+                    <div class="name-track">Data Analytics Student</div>
+                </div>
+            </div>
+        </div>

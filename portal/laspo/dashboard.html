@@ -1,0 +1,58 @@
+<!-- Base Template Syntax Implementation snippet -->
+<div class="container text-light bg-dark p-4">
+    <h2>LASOP Sandbox Terminal</h2>
+    
+    <!-- Face ID Section -->
+    <div class="card bg-secondary my-3 p-3">
+        <h3>Face ID Biometric Attendance</h3>
+        <div id="webcam-sandbox" class="border p-5 text-center">
+            [ Camera Sandbox Active Frame View ]
+        </div>
+        <p>Status: {% if profile.face_id_verified %}Verified{% else %}Pending Scan{% endif %}</p>
+    </div>
+
+    <!-- Exams & Student Records Table -->
+    <div class="card bg-secondary my-3 p-3">
+        <h3>Exams & Student Records</h3>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Assigned Program Track</th>
+                    <th>Active Module Element</th>
+                    <th>Exam Score</th>
+                    <th>Performance Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in exam_records %}
+                <tr>
+                    <td>{{ profile.get_program_track_display }}</td>
+                    <td>{{ record.active_module }}</td>
+                    <td>{{ record.exam_score }} / 100</td>
+                    <td>{{ record.get_status_display }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No transcripts found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pricing / Tuition Section -->
+    <div class="card bg-secondary my-3 p-3">
+        <h3>Tuition Fee Processing</h3>
+        <div class="row">
+            {% for package in tuition_packages %}
+            <div class="col-md-6 border p-3">
+                <h4>{{ package.name }}</h4>
+                <p class="text-success">₦{{ package.price_ngn }}</p>
+                <form action="/pay/" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="package_id" value="{{ package.id }}">
+                    <button class="btn btn-primary">Process Payment</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<form method="POST" action="">
+    {% csrf_token %}
+    
+    <!-- Render specific form field items to respect your custom UI layouts -->
+    <div class="form-group">
+        <label>{{ form.username.label }}</label>
+        {{ form.username }}
+        {{ form.username.errors }}
+    </div>
+
+    <div class="form-group">
+        <label>{{ form.email.label }}</label>
+        {{ form.email }}
+        {{ form.email.errors }}
+    </div>
+
+    <div class="form-group">
+        <label>{{ form.password.label }}</label>
+        {{ form.password }}
+        {{ form.password.errors }}
+    </div>
+
+    <div class="form-group">
+        <label>{{ form.program_track.label }}</label>
+        {{ form.program_track }}
+        {{ form.program_track.errors }}
+    </div>
+
+    <button type="submit">Provision Account</button>
+</form>

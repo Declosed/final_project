@@ -1,0 +1,31 @@
+ type CMD
+ipconfig
+
+locate the ip4 ip
+Open your core/settings.py file and ensure your ALLOWED_HOSTS configuration includes a wildcard string 
+so it permits network devices to handshake with your computer:
+ALLOWED_HOSTS = ['*']
+
+python manage.py runserver 0.0.0.0:8000
+
+For example, if your IP was 192.168.100.12, you must type:http://192.168.100
+
+
+
+should is case your login fails to work again
+
+CMD
+
+cd "C:\Users\Declosed Device\Desktop\lasop_project"
+
+createsuperuser
+
+python manage.py createsuperuser
+ done
+
+
+Step 1: Force Your Mobile Browser to Allow the Webcam
+
+Because your phone is connecting over a local IP network link (http://10.72.87.127:8000), modern mobile browsers automatically drop the camera permissions out of caution. We need to flip an internal browser flag to force it to trust this development link.
+
+Type exactly chrome://flags and press Enter.In the search box at the top, type insecure.Look for the setting called "Insecure origins treated as secure".Change its status dropdown from Disabled/Default to Enabled.In the text field right below it, type your exact laptop server IP link:👉 http://10.72.87.127:8000
