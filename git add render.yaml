@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: portal-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn portal.wsgi:application
+    envVars:
+      - key: MAKEFLAGS
+        value: -j1
